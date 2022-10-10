@@ -45,8 +45,12 @@ track their workout routines, and foster a community of workout collaboration by
 
 # Weekly Plan
 Monday - Create all data models, get middleware setup, server setup, organize files and directories. Get the barebones backend setup and run tests with POSTMAN to ensure objects can be created and stored.
+
 Tuesday - Continue working through basic backend infrastructure. Then begin creating views. Start with organizing view for seed data, then move to user authentication (sign up, log in, log out).
+
 Wednesday - Continue working on views. Build out the view and test functionality for logging new user workouts and optional share to the community. Build and test ability to view other user workouts and give reviews.
+
 Thursday - Begin looking at ways to refactor now that the barebones of frontend and backend should be complete. Test all user cases, common and edge-case scenarios. 
+
 Friday - Work on enhancing views and introducing more flavor to the design. Expect to have full app functionality by this point, so focus more on improving design and layout. 
 
