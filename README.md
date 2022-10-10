@@ -37,6 +37,13 @@ track their workout routines, and foster a community of workout collaboration by
 # Data
 - Seed with 10 sets of existing workout objects
 
+- Example (JS):
+const workoutSeed = [
+    { name: "Arm Cruncher", description: "4 sets of 6 barbell curls, 4 sets of 10 hammer curls, 4 sets of 6 preacher curls", difficulty: 6}
+]
+
+
+
 # Wireframe/Screenshots
 ![Full-Stack-Project](Wireframes/Workout%20Logger%20Wireframes.drawio.png)
 
