@@ -8,15 +8,15 @@ other users. The purpose of this application is to both enable users to more sea
 track their workout routines, and foster a community of workout collaboration by sharing workouts out to other users for them to view and provide feedback.
 
 # Technologies used:
--HTML5
--CSS
--Javascript
--Node
--MongoDB
--Mongoose
--Express
--Liquid
--Bootstrap
+- HTML5
+- CSS
+- Javascript
+- Node
+- MongoDB
+- Mongoose
+- Express
+- Liquid
+- Bootstrap
 
 # User Stories
 - As a user, I want the ability to sign up for the application with a distinct username.
