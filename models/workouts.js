@@ -14,8 +14,8 @@ const workoutsSchema = new Schema({
 		description: { type: String, required: true },
         difficulty: { type: Number, required: true },
 		isVis: { type: Boolean, required: true },
-		author: {
-			type: Schema.Types.ObjectID,
+		owner: {
+			type: Schema.Types.ObjectId,
 			ref: 'User',
 		},
         feedback: [feedbackSchema]

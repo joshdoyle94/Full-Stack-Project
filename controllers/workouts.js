@@ -39,11 +39,9 @@ router.get('/mine', (req, res) => {
     const { username, userId, loggedIn } = req.session
 	Workouts.find({ owner: userId })
 		.then(workouts => {
-			res.json({ workouts: workouts})
+			res.status(200).json({ workouts: workouts})
 		})
-		.catch(error => {
-			res.json(`/error?error=${error}`)
-		})
+		.catch(error => console.log(err))
 })
 
 // new route -> GET route that renders our page with the form
@@ -62,9 +60,7 @@ router.post('/', (req, res) => {
 			console.log('this was returned from create', workout)
 			res.json({ workout: workout.toObject() })
 		})
-		.catch(error => {
-			res.json(`/error?error=${error}`)
-		})
+		.catch(error => console.log(error))
 })
 
 // edit route -> GET that takes us to the edit form view
