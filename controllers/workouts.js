@@ -123,13 +123,17 @@ router.put("/:id", (req, res) => {
 router.get('/:id', (req, res) => {
 	const workoutId = req.params.id
 	Workouts.findById(workoutId)
-		.then(workout => {
-            const {username, loggedIn, userId} = req.session
+	.populate("feedback.author", "username")
+	.then(workout => {
+            // const {username, loggedIn, userId} = req.session
+			const username = req.session.username
+            const loggedIn = req.session.loggedIn
+            const userId = req.session.userId
 			res.render('workouts/show', { workout, username, loggedIn, userId })
-		})
-		.catch((error) => {
+	})
+	.catch((error) => {
 			res.redirect(`/error?error=${error}`)
-		})
+	})
 })
 
 // delete route
