@@ -29,22 +29,21 @@ router.post('/signup', async (req, res) => {
 	User.create(req.body)
 		// if created successfully redirect to login
 		.then((user) => {
-			// res.redirect('/auth/login')
-			console.log(user)
-			res.status(201).json({ username: user.username })
+			res.redirect('/auth/login')
+			// console.log(user)
+			// res.status(201).json({ username: user.username })
 		})
 		// if an error occurs, send err
-		.catch((err) => {
-			console.log(err)
-			res.json(err)
+		.catch((error) => {
+			res.redirect(`/error?error=${error}`)
 		})
 })
 
 // two login routes
 // get to render the login form
-// router.get('/login', (req, res) => {
-// 	res.render('auth/login')
-// })
+router.get('/login', (req, res) => {
+	res.render('auth/login')
+})
 // post to send the login info(and create a session)
 router.post('/login', async (req, res) => {
 	// console.log('request object', req)
@@ -73,28 +72,28 @@ router.post('/login', async (req, res) => {
 
 					console.log('session user id', req.session.userId)
 					// redirect to /examples if login is successful
-					res.status(201).json({ user: user.toObject() })
+					res.redirect('/')
 				} else {
 					// send an error if the password doesnt match
-					res.json({ error: 'username or password incorrect' })
+					res.redirect('/error?error=username%20or%20password%20incorrect')
 				}
 			} else {
 				// send an error if the user doesnt exist
-				res.json({ error: 'user does not exist' })
+				res.redirect('/error?error=That%20user%20does%20not%20exist')
 			}
 		})
 		// catch any other errors that occur
 		.catch((error) => {
 			console.log('the error', error);
 			
-			res.json(err)
+			res.redirect('/error?error=That%20user%20does%20not%20exist')
 		})
 })
 
 // // logout route -> destroy the session
 router.delete('/logout', (req, res) => {
 	req.session.destroy(() => {
-		res.sendStatus(204)
+		res.redirect('/')
 	})
 })
 
