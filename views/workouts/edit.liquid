@@ -1,23 +1,18 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div class="container-sm">
-    <form action="/examples" method="POST">
+    <form action="/workouts/{{workout.id}}?_method=PUT" method="POST">
       <fieldset>
-        <legend>Create New Example</legend>
-        <label class="form-label">Title:
+        <legend>Edit Workout</legend>
+        <label class="form-label">Name:
         </label>
-        <input type="text" name="title" placeholder="{{ example.title }}" value="{{ example.title }}" class="form-control">
-        <label class="form-label">Body:</label>
-        <input type="text" name="body" placeholder="{{ example.body }}" value="{{ example.body }}" class="form-control">
-        <label class="form-label">Amount:</label>
-        <input type="number" name="amount" value="{{ example.amount }}" class="form-control">
-        <label class="form-label">Ready:</label>
-        <input type="checkbox" name="ready" class="form-check-input"
-          {% if example.ready %}
-          checked
-          {% endif %}>
+        <input type="text" name="name" placeholder="{{ workout.name }}" value="{{ workout.name }}" class="form-control">
+        <label class="form-label">Description</label>
+        <input type="text" name="description" placeholder="{{ workout.description }}" value="{{ workout.description }}" class="form-control">
+        <label class="form-label">Difficulty:</label>
+        <input type="number" name="difficulty" value="{{ workout.difficulty }}" class="form-control">
       </fieldset>
-      <input type="submit" value="Edit Example" class="btn btn-success">
+      <input type="submit" value="Edit Workout" class="btn btn-success">
     </form>
   </div>
-{% endblock %}}}}
+{% endblock %}

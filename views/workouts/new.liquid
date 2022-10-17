@@ -1,20 +1,23 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div class="container-sm">
-    <form action="/examples" method="POST">
+    <form action="/workouts" method="POST">
       <fieldset>
-        <legend>Create New Example</legend>
-        <label class="form-label">Title:
+        <legend>Create/Log New Workout</legend>
+        <label class="form-label">Name:
         </label>
-        <input type="text" name="title" placeholder="enter example title" class="form-control">
-        <label class="form-label">Body:</label>
-        <input type="text" name="body" placeholder="enter example body" class="form-control">
-        <label class="form-label">Amount:</label>
-        <input type="number" name="amount" class="form-control">
-        <label class="form-label">Ready:</label>
-        <input type="checkbox" name="ready" class="form-check-input">
+        <input type="text" name="name" placeholder="enter workout title" class="form-control">
+        <label class="form-label">Description</label>
+        <input type="text" name="description" placeholder="describe workout" class="form-control">
+        <label class="form-label">Difficulty</label>
+        <input type="number" name="difficulty" class="form-control">
       </fieldset>
-      <input type="submit" value="Create New Example" class="btn btn-success">
+      <input type="submit" value="Create/Log New Workout" class="btn btn-success">
     </form>
   </div>
-{% endblock %}}}}}}
+{% endblock %}
+
+
+{%- comment -%}
+  <label class="form-label">isVis</label>
+  <input type="checkbox" name="isVis" class="form-check-input">{%- endcomment -%}

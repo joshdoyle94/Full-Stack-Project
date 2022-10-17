@@ -71,8 +71,8 @@ router.post('/login', async (req, res) => {
           			const { username, loggedIn, userId } = req.session
 
 					console.log('session user id', req.session.userId)
-					// redirect to /examples if login is successful
-					res.redirect('/')
+					// redirect to /workouts if login is successful
+					res.redirect('/workouts')
 				} else {
 					// send an error if the password doesnt match
 					res.redirect('/error?error=username%20or%20password%20incorrect')
@@ -92,7 +92,10 @@ router.post('/login', async (req, res) => {
 
 // // logout route -> destroy the session
 router.delete('/logout', (req, res) => {
-	req.session.destroy(() => {
+	req.session.destroy(err => {
+		console.log('req.session after logout', req.session)
+        console.log('err on logout?', err)
+
 		res.redirect('/')
 	})
 })

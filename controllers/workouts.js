@@ -8,16 +8,16 @@ const router = express.Router()
 // Router Middleware
 // Authorization middleware
 // If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
-// router.use((req, res, next) => {
-// 	// checking the loggedIn boolean of our session
-// 	if (req.session.loggedIn) {
-// 		// if they're logged in, go to the next thing(thats the controller)
-// 		next()
-// 	} else {
-// 		// if they're not logged in, send them to the login page
-// 		res.redirect('/auth/login')
-// 	}
-// })
+router.use((req, res, next) => {
+	// checking the loggedIn boolean of our session
+	if (req.session.loggedIn) {
+		// if they're logged in, go to the next thing(thats the controller)
+		next()
+	} else {
+		// if they're not logged in, send them to the login page
+		res.redirect('/auth/login')
+	}
+})
 
 // Routes
 
@@ -28,10 +28,12 @@ router.get('/', (req, res) => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
 			
-			res.json({ workouts: workouts})
+			res.render('workouts/index', { workouts, username, loggedIn })
 		})
-		.catch(error => console.log(err))
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
 	})
+})
 
 // index that shows only the user's examples
 router.get('/mine', (req, res) => {
@@ -39,15 +41,17 @@ router.get('/mine', (req, res) => {
     const { username, userId, loggedIn } = req.session
 	Workouts.find({ owner: userId })
 		.then(workouts => {
-			res.status(200).json({ workouts: workouts})
+			res.render('workouts/index', { workouts, username, loggedIn })
 		})
-		.catch(error => console.log(err))
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.json('workouts/new', { username, loggedIn })
+	res.render('workouts/new', { username, loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
@@ -58,9 +62,11 @@ router.post('/', (req, res) => {
 	Workouts.create(req.body)
 		.then(workout => {
 			console.log('this was returned from create', workout)
-			res.json({ workout: workout.toObject() })
+			res.redirect('/workouts')
 		})
-		.catch(error => console.log(error))
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
 // edit route -> GET that takes us to the edit form view
@@ -69,36 +75,60 @@ router.get('/:id/edit', (req, res) => {
 	const workoutId = req.params.id
 	Workouts.findById(workoutId)
 		.then(workout => {
-			res.json('workouts/edit', { workout })
+			res.render('workouts/edit', { workout })
 		})
 		.catch((error) => {
-			res.json(`/error?error=${error}`)
+			res.redirect(`/error?error=${error}`)
 		})
 })
 
 // update route
-router.put('/:id', (req, res) => {
-	const workoutId = req.params.id
-	req.body.ready = req.body.ready === 'on' ? true : false
+// router.put('/:id', (req, res) => {
+// 	const workoutId = req.params.id
+// 	req.body.ready = req.body.ready === 'on' ? true : false
 
-	Workouts.findByIdAndUpdate(workoutId, req.body, { new: true })
-		.then(workout => {
-			console.log('the workout from the update woo hoo!', workout)
-			res.sendStatus(204)
-		})
-		.catch(error => console.log(error))
+// 	Workouts.findByIdAndUpdate(workoutId, req.body, { new: true })
+// 		.then(workout => {
+// 			console.log('the workout from the update woo hoo!', workout)
+// 			res.redirect(`/workouts/${workout.id}`)
+// 		})
+// 		.catch((error) => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
+
+router.put("/:id", (req, res) => {
+    console.log("req.body initially", req.body)
+    const id = req.params.id
+
+    console.log('req.body after changing checkbox value', req.body)
+    Workouts.findById(id)
+        .then(workout => {
+            if (workout.owner == req.session.userId) {
+                // must return the results of this query
+                return workout.updateOne(req.body)
+            } else {
+                res.sendStatus(401)
+            }
+        })
+        .then(() => {
+            // console.log('returned from update promise', data)
+            res.redirect(`/workouts/${id}`)
+        })
+        .catch(err => res.redirect(`/error?error=${err}`))
 })
+
 
 // show route
 router.get('/:id', (req, res) => {
 	const workoutId = req.params.id
 	Workouts.findById(workoutId)
 		.then(workout => {
-            // const {username, loggedIn, userId} = req.session
-			res.json( { workout: workout } )
+            const {username, loggedIn, userId} = req.session
+			res.render('workouts/show', { workout, username, loggedIn, userId })
 		})
 		.catch((error) => {
-			res.json(err => console.log(err))
+			res.redirect(`/error?error=${error}`)
 		})
 })
 
@@ -106,9 +136,13 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 	const workoutId = req.params.id
 	Workouts.findByIdAndRemove(workoutId)
-		.then(res.sendStatus(201))
-		.catch(error => console.log(error)
-		)})
+		.then(workout => {
+			res.redirect('/workouts')
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
 
 // Export the Router
 module.exports = router

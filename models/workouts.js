@@ -13,7 +13,7 @@ const workoutsSchema = new Schema({
 		name: { type: String, required: true },
 		description: { type: String, required: true },
         difficulty: { type: Number, required: true },
-		isVis: { type: Boolean, required: true },
+		isVis: { type: Boolean },
 		owner: {
 			type: Schema.Types.ObjectId,
 			ref: 'User',
