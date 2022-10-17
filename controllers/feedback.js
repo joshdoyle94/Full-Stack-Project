@@ -15,7 +15,7 @@ const router = express.Router()
 // POST
 // only loggedIn users can post comments
 router.post("/:workoutId", (req, res) => {
-    const workoutId = req.params.fruitId
+    const workoutId = req.params.workoutId
 
     if (req.session.loggedIn) {
         // we want to adjust req.body so that the author is automatically assigned
@@ -30,16 +30,16 @@ router.post("/:workoutId", (req, res) => {
         .then(workout => {
             // push the comment into the fruit.comments array
             workout.feedback.push(req.body)
-            // we need to save the fruit
+            // we need to save the workout
             return workout.save()
         })
         .then(workout => {
             // res.status(200).json({ fruit: fruit })
-            res.redirect(`/workouts/${workout.id}`)
+            res.status(200).json({ workout: workout })
         })
         // do something else if it doesn't work
         //  --> send some kind of error depending on what went wrong
-        .catch(err => res.redirect(`/error?error=${err}`))
+        .catch(err => console.log(err))
 })
 
 // DELETE
@@ -55,31 +55,30 @@ router.delete('/delete/:workoutId/:feedbackId', (req, res) => {
             // subdocs have a built in method that you can use to access specific subdocuments when you need to.
             // this built in method is called .id()
             const theFeedback = workout.feedback.id(feedbackId)
-            console.log('this is the feedback that was found', theComment)
+            console.log('this is the feedback that was found', theFeedback)
             // make sure the user is logged in
             if (req.session.loggedIn) {
                 // only let the author of the comment delete it
-                if (theComment.author == req.session.userId) {
+                if (theFeedback.author == req.session.userId) {
                     // find some way to remove the comment
                     // here's another built in method
-                    theComment.remove()
+                    theFeedback.remove()
                     workout.save()
-                    res.redirect(`/workouts/${workout.id}`)
+                    res.sendStatus(204)
                     // return the saved fruit
                     // return fruit.save()
                 } else {
-                    const err = 'you%20are%20not%20authorized%20for%20this%20action'
-                    res.redirect(`/error?error=${err}`)
+                    // const err = 'you%20are%20not%20authorized%20for%20this%20action'
+                    res.sendStatus(401)
                 }
             } else {
-                const err = 'you%20are%20not%20authorized%20for%20this%20action'
-                res.redirect(`/error?error=${err}`)
+                // const err = 'you%20are%20not%20authorized%20for%20this%20action'
+                res.sendStatus(401)
             }
         })
         // send an error if error
-        .catch(err => res.redirect(`/error?error=${err}`))
-
-})
+        .catch(err => console.log(err))
+    })
 
 //////////////////////////////////////////
 // Export the Router
