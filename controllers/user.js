@@ -14,9 +14,9 @@ const router = express.Router()
 // Routes
 
 // GET to render the signup form
-// router.get('/signup', (req, res) => {
-// 	res.render('auth/signup')
-// })
+router.get('/signup', (req, res) => {
+	res.render('auth/signup')
+})
 
 // POST to send the signup info
 router.post('/signup', async (req, res) => {
