@@ -22,5 +22,36 @@
         </div>
       {% endif %}
     </article>
+    <hr>
+    <h4>Feedback</h4>
+    <hr>
+    {% if loggedIn %}
+      <div class="col-md-6">
+        <form action="/feedback/{{workout.id}}" method="POST">
+          <fieldset>
+            <legend>Add Feedback</legend>
+            <label class="form-label">Feedback:</label>
+            <input class="form-control mb-1" type="text" placeholder="enter your feedback..." name="note" required>
+          </fieldset>
+          <input class="btn btn-success" type="submit" value="add feedback">
+        </form>
+      </div>
+    {% else %}
+      <div class="col-md-6">
+        <small>If you'd like to leave feedback, please log in...</small>
+      </div>
+    {% endif %}
+    <hr>
+    {% if workout.feedback.length > 0%}
+      <div class="container-sm justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          {% for feedback in workout.feedback %}
+            {% render '../feedback.liquid', feedback: feedback, userId: userId, workout: workout %}
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <small>no feedback yet...</small>
+    {% endif %}
   </div>
 {% endblock %}
