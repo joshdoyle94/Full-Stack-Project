@@ -35,11 +35,11 @@ router.post("/:workoutId", (req, res) => {
         })
         .then(workout => {
             // res.status(200).json({ fruit: fruit })
-            res.status(200).json({ workout: workout })
+            res.redirect(`/workouts/${workout.id}`)
         })
         // do something else if it doesn't work
         //  --> send some kind of error depending on what went wrong
-        .catch(err => console.log(err))
+        .catch(err => res.redirect(`/error?error=${err}`))
 })
 
 // DELETE
@@ -64,20 +64,20 @@ router.delete('/delete/:workoutId/:feedbackId', (req, res) => {
                     // here's another built in method
                     theFeedback.remove()
                     workout.save()
-                    res.sendStatus(204)
+                    res.redirect(`/workouts/${workout.id}`)
                     // return the saved fruit
                     // return fruit.save()
                 } else {
-                    // const err = 'you%20are%20not%20authorized%20for%20this%20action'
-                    res.sendStatus(401)
+                    const err = 'you%20are%20not%20authorized%20for%20this%20action'
+                    res.redirect(`/error?error=${err}`)
                 }
             } else {
-                // const err = 'you%20are%20not%20authorized%20for%20this%20action'
-                res.sendStatus(401)
+                const err = 'you%20are%20not%20authorized%20for%20this%20action'
+                res.redirect(`/error?error=${err}`)
             }
         })
         // send an error if error
-        .catch(err => console.log(err))
+        .catch(err => res.redirect(`/error?error=${err}`))
     })
 
 //////////////////////////////////////////
