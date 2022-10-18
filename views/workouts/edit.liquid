@@ -1,18 +1,31 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-  <div class="container-sm">
-    <form action="/workouts/{{workout.id}}?_method=PUT" method="POST">
-      <fieldset>
-        <legend>Edit Workout</legend>
-        <label class="form-label">Name:
-        </label>
-        <input type="text" name="name" placeholder="{{ workout.name }}" value="{{ workout.name }}" class="form-control">
-        <label class="form-label">Description</label>
-        <input type="text" name="description" placeholder="{{ workout.description }}" value="{{ workout.description }}" class="form-control">
-        <label class="form-label">Difficulty:</label>
-        <input type="number" name="difficulty" value="{{ workout.difficulty }}" class="form-control">
-      </fieldset>
-      <input type="submit" value="Edit Workout" class="btn btn-success">
-    </form>
-  </div>
+  <main class="mainNew">
+    <div class="cardNew">
+      <form action="/workouts/{{workout.id}}?_method=PUT" method="POST">
+        <fieldset>
+          <br>
+          <legend id="postNew">Edit Workout</legend>
+          <br>
+          <br>
+          <label class="form-label">Workout Name
+          </label>
+          <input type="text" name="name" placeholder="{{ workout.name }}" value="{{ workout.name }}" class="form-control-lg">
+          <br>
+          <br>
+          <label class="form-label">Description</label>
+          <input type="text" name="description" placeholder="{{ workout.description }}" value="{{ workout.description }}" class="form-control-lg">
+          <br>
+          <br>
+          <label class="form-label">Difficulty:</label>
+          <input type="number" name="difficulty" value="{{ workout.difficulty }}" class="form-control-lg">
+          <br>
+          <br>
+        </fieldset>
+        <input type="submit" value="Edit Workout" class="btn btn-success">
+        <br>
+        <br>
+      </form>
+    </div>
+  </main>
 {% endblock %}
