@@ -14,6 +14,7 @@ const router = express.Router()
 ////////////////////////////////////////////
 // POST
 // only loggedIn users can post comments
+// Nit: choose either double or single quotes
 router.post("/:workoutId", (req, res) => {
     const workoutId = req.params.workoutId
 
@@ -55,6 +56,7 @@ router.delete('/delete/:workoutId/:feedbackId', (req, res) => {
             // subdocs have a built in method that you can use to access specific subdocuments when you need to.
             // this built in method is called .id()
             const theFeedback = workout.feedback.id(feedbackId)
+            // Nit: remove console.log
             console.log('this is the feedback that was found', theFeedback)
             // make sure the user is logged in
             if (req.session.loggedIn) {
