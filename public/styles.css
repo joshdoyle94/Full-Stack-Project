@@ -2,7 +2,19 @@
 
 body {
     /* background-color: steelblue; */
-    background-color: rgb(167,190,215);
+    background-color: rgb(234,232,226);
+}
+
+.shadowText {
+    text-shadow: 2px 2px white;
+}
+
+#homeRegisterHREF {
+    color: rgb(4,4,44)
+}
+
+#homeLoginHREF {
+    color: rgb(4,4,44)
 }
 
 .welcomePage {
@@ -82,7 +94,7 @@ body {
 }
 
 .card {
-    background-color: rgb(235, 230, 230);
+    background-color: rgb(255, 255, 255);
     margin-left: 10px;
     margin-top: 10px;
     border: solid rgb(4,4,44);
@@ -98,7 +110,7 @@ body {
 }
 
 .cardNew {
-    background-color: rgb(235, 230, 230);
+    background-color: rgb(255, 255, 255);
     margin-top: 20px;
     border: solid rgb(4,4,44);
     color: rgb(4,4,44);
@@ -132,7 +144,7 @@ body {
 }
 
 .form-control {
-    background-color: rgb(235, 230, 230);
+    background-color: rgb(255, 255, 255);
 }
 
 .form-control-lg {
