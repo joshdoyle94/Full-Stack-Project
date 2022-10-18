@@ -50,6 +50,7 @@ router.get('/mine', (req, res) => {
 
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
+	// Nit: remove unused `userId`
 	const { username, userId, loggedIn } = req.session
 	res.render('workouts/new', { username, loggedIn })
 })
@@ -61,6 +62,7 @@ router.post('/', (req, res) => {
 	req.body.owner = req.session.userId
 	Workouts.create(req.body)
 		.then(workout => {
+			// Nit: remove console.log
 			console.log('this was returned from create', workout)
 			res.redirect('/workouts')
 		})
@@ -97,10 +99,13 @@ router.get('/:id/edit', (req, res) => {
 // 		})
 // })
 
+// Nit: choose either single or double quotes
 router.put("/:id", (req, res) => {
+	// Nit: remove console.log
     console.log("req.body initially", req.body)
     const id = req.params.id
 
+	// Nit: remove console.log
     console.log('req.body after changing checkbox value', req.body)
     Workouts.findById(id)
         .then(workout => {
@@ -123,6 +128,7 @@ router.put("/:id", (req, res) => {
 router.get('/:id', (req, res) => {
 	const workoutId = req.params.id
 	Workouts.findById(workoutId)
+	// Nit: choose either double or single quotes
 	.populate("feedback.author", "username")
 	.then(workout => {
             // const {username, loggedIn, userId} = req.session
@@ -140,6 +146,7 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 	const workoutId = req.params.id
 	Workouts.findByIdAndRemove(workoutId)
+	// Nit: remove unused `workout`
 		.then(workout => {
 			res.redirect('/workouts')
 		})

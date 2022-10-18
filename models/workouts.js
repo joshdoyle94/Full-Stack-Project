@@ -22,6 +22,7 @@ const workoutsSchema = new Schema({
 	{ timestamps: true }
 )
 
+// The name of this model should be a single version of the word you are using. So here it should be Workout. Remember that Mongoose transforms the string we pass in to a lowercase plural version of the word for the collection name. Change to Workout across all the app
 const Workouts = model('Workouts', workoutsSchema)
 
 /////////////////////////////////
