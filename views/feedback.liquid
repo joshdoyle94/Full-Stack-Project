@@ -1,18 +1,22 @@
 {% block content %}
-  <div class="card mb-4 shadow">
-    <div class="card-body">
-      <p>{{ feedback.note }}
-      </p>
-      <div class="d-flex justify-content-between">
-        <small>author:
-          {{ feedback.author.username }}
-        </small>
-        {% if feedback.author == userId %}
-          <form action="/feedback/delete/{{workout.id}}/{{feedback.id}}?_method=DELETE" method="POST">
-            <input class="btn btn-danger" type="submit" value="X">
-          </form>
-        {% endif %}
-      </div>
+  <main class="mainNew">
+    <div class="container-md">
+      <div class="cardNew">
+        <div class="card-body">
+          <p>{{ feedback.note }}
+          </p>
+          <div class="d-flex justify-content-between">
+            <small>author:
+              {{ feedback.author.username }}
+            </small>
+            {% if feedback.author == userId %}
+              <form action="/feedback/delete/{{workout.id}}/{{feedback.id}}?_method=DELETE" method="POST">
+                <input class="btn btn-danger" type="submit" value="Remove" id="removeFeedback">
+              </form>
+            {% endif %}
+          </div>
+        </div>
     </div>
-  </div>
+  </main>
+  <hr>
 {% endblock %}

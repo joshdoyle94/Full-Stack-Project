@@ -70,12 +70,12 @@ body {
     color: rgb(4,4,44);
 }
 
-.cardHeader {
+/* .cardHeader {
     background-color: rgb(4,4,44);
     width: 100%;
     color: white;
     text-align: center;
-}
+} */
 
 .row {
     justify-content: space-around
@@ -87,6 +87,39 @@ body {
     margin-top: 10px;
     border: solid rgb(4,4,44);
     color: rgb(4,4,44);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.mainNew {
+    display: flex;
+    justify-content: center;
+}
+
+.cardNew {
+    background-color: rgb(235, 230, 230);
+    margin-top: 20px;
+    border: solid rgb(4,4,44);
+    color: rgb(4,4,44);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 60%;
+}
+
+.addFeedbackContainer {
+    margin-top: 20px;
+    color: rgb(4,4,44);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 60%;
+}
+
+.container-md {
+    display: flex;
+    justify-content: center;
 }
 
 .btn {
@@ -96,8 +129,16 @@ body {
 
 .form-control {
     background-color: rgb(235, 230, 230);
-    /* max-width: 500px; */
 }
+
+.form-control-lg {
+    width: 80%;
+}
+
+.formCardNew {
+    width: 100%;
+}
+
 
 #postNew {
     font-family: 'Fjalla One', sans-serif;
@@ -112,4 +153,26 @@ body {
 #loginCard {
     justify-content: center;
     text-align: center;
+}
+
+#edit {
+    background-color: blue;
+    margin: 5px;
+}
+
+#delete {
+    background-color: red;
+    margin: 5px;
+}
+
+#removeFeedback {
+    background-color: red;
+}
+
+#addFeedback {
+    margin-top: 10px;
+}
+
+.container-sm {
+    width: 100%;
 }

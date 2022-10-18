@@ -1,19 +1,27 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-  <div class="container-sm">
-    <form action="/workouts" method="POST">
-      <fieldset>
-        <legend id="postNew">Post New Workout</legend>
-        <label class="form-label">Name:
-        </label>
-        <input type="text" name="name" placeholder="title your workout" class="form-control">
-        <label class="form-label">Description:</label>
-        <input type="text" name="description" placeholder="detail your workout" class="form-control">
-        <label class="form-label">Difficulty:</label>
-        <input type="number" name="difficulty" class="form-control" placeholder="On a scale of 1-10...">
-      </fieldset>
-      <br>
-      <input type="submit" value="Publish" class="btn btn-success">
-    </form>
-  </div>
+  <main class="mainNew">
+    <div class="cardNew">
+      <form action="/workouts" method="POST" class="formCardNew">
+        <fieldset>
+          <br>
+          <legend id="postNew">Post New Workout</legend>
+          <br>
+          <br>
+          <input type="text" name="name" placeholder="title your workout" class="form-control-lg">
+          <br>
+          <br>
+          <input type="text" name="description" placeholder="detail your workout" class="form-control-lg">
+          <br>
+          <br>
+          <input type="number" name="difficulty" class="form-control-lg" placeholder="Difficulty...on a scale of 1-10">
+          <br>
+          <br>
+        </fieldset>
+        <input type="submit" value="Publish" class="btn btn-success">
+        <br>
+        <br>
+      </form>
+    </div>
+  </main>
 {% endblock %}
