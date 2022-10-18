@@ -122,6 +122,10 @@ body {
     justify-content: center;
 }
 
+.container-lg {
+    text-align: center;
+}
+
 .btn {
     background-color: rgb(4,4,44);
     color:rgb(235, 230, 230)
@@ -171,6 +175,16 @@ body {
 
 #addFeedback {
     margin-top: 10px;
+}
+
+#noLogout {
+    background-color: green;
+    margin: 5px;
+}
+
+#yesLogout {
+    background-color: red;
+    margin: 5px;
 }
 
 .container-sm {
