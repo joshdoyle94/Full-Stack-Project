@@ -22,15 +22,11 @@
         </div>
       {% endif %}
     </article>
-    <hr>
-    <h4>Feedback</h4>
-    <hr>
     {% if loggedIn %}
       <div class="col-md-6">
         <form action="/feedback/{{workout.id}}" method="POST">
           <fieldset>
             <legend>Add Feedback</legend>
-            <label class="form-label">Feedback:</label>
             <input class="form-control mb-1" type="text" placeholder="enter your feedback..." name="note" required>
           </fieldset>
           <input class="btn btn-success" type="submit" value="add feedback">

@@ -2,17 +2,21 @@
 {% block content %}
 
   <div class="container-sm">
-    <form action="/auth/signup" method="POST">
-      <fieldset>
-        <legend>Sign Up Here!</legend>
-        <label class="form-label">Username:
-        </label>
-        <input type="text" name="username" placeholder="username" class="form-control" required>
-        <label class="form-label">Password</label>
-        <input type="password" name="password" placeholder="enter password" class="form-control" required>
-      </fieldset>
-      <input type="submit" value="Create Account" class="btn btn-success">
-    </form>
+    <div id="registerCard">
+      <form action="/auth/signup" method="POST">
+        <fieldset>
+          <br>
+          <legend>Sign Up Here!</legend>
+          <br>
+          <br>
+          <input type="text" name="username" placeholder="choose a username" class="form-control" required>
+          <br>
+          <input type="password" name="password" placeholder="choose your password" class="form-control" required>
+          <br>
+        </fieldset>
+        <input type="submit" value="Register" class="btn btn-success">
+      </form>
+    </div>
   </div>
 
-{% endblock %}}}}}}
+{% endblock %}

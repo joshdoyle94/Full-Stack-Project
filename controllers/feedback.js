@@ -58,15 +58,13 @@ router.delete('/delete/:workoutId/:feedbackId', (req, res) => {
             console.log('this is the feedback that was found', theFeedback)
             // make sure the user is logged in
             if (req.session.loggedIn) {
-                // only let the author of the comment delete it
+                // only let the author of the feedback delete it
                 if (theFeedback.author == req.session.userId) {
-                    // find some way to remove the comment
+                    // find some way to remove the feedback
                     // here's another built in method
                     theFeedback.remove()
                     workout.save()
                     res.redirect(`/workouts/${workout.id}`)
-                    // return the saved fruit
-                    // return fruit.save()
                 } else {
                     const err = 'you%20are%20not%20authorized%20for%20this%20action'
                     res.redirect(`/error?error=${err}`)

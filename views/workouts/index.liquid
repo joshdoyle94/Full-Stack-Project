@@ -1,17 +1,13 @@
 {% layout 'layout.liquid'%}
 {% block content %}
   <div>
-    <h2 class="display-6">All Workouts</h2>
+    <h2 class="display-7">All Workouts</h2>
     <div class="row">
       {% for workout in workouts %}
         <div class="card" style="width: 20rem;">
-          <h5 class="card-header" style="background-color: tan">{{ workout.name }}
+          <h5 class="cardHeader">{{ workout.name }}
           </h5>
           <div class="card-body">
-            <h5 class="card-title">
-              Difficulty:
-              {{ workout.difficulty }}
-            </h5>
             <p class="card-text">
               Description:
               {{ workout.description }}
@@ -20,7 +16,7 @@
               Difficulty:
               {{ workout.difficulty }}
             </p>
-            <a href="/workouts/{{ workout.id }}" class="btn btn-info">
+            <a href="/workouts/{{ workout.id }}" class="btn">
               View
               {{ workout.name }}
             </a>
@@ -30,3 +26,7 @@
     </div>
   </div>
 {% endblock %}
+
+{%- comment -%}
+  class="btn btn-info"
+{%- endcomment -%}

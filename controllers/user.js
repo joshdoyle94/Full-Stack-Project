@@ -90,13 +90,23 @@ router.post('/login', async (req, res) => {
 		})
 })
 
+// GET
+// SENDS to the logout page
+router.get('/logout', (req, res) => {
+    const username = req.session.username
+    const loggedIn = req.session.loggedIn
+    const userId = req.session.userId
+
+    res.render('auth/logout', { username, loggedIn, userId})
+})
+
 // // logout route -> destroy the session
 router.delete('/logout', (req, res) => {
 	req.session.destroy(err => {
 		console.log('req.session after logout', req.session)
         console.log('err on logout?', err)
 
-		res.redirect('/')
+		res.redirect('/auth/login')
 	})
 })
 

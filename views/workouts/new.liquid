@@ -3,21 +3,17 @@
   <div class="container-sm">
     <form action="/workouts" method="POST">
       <fieldset>
-        <legend>Create/Log New Workout</legend>
+        <legend id="postNew">Post New Workout</legend>
         <label class="form-label">Name:
         </label>
-        <input type="text" name="name" placeholder="enter workout title" class="form-control">
-        <label class="form-label">Description</label>
-        <input type="text" name="description" placeholder="describe workout" class="form-control">
-        <label class="form-label">Difficulty</label>
-        <input type="number" name="difficulty" class="form-control">
+        <input type="text" name="name" placeholder="title your workout" class="form-control">
+        <label class="form-label">Description:</label>
+        <input type="text" name="description" placeholder="detail your workout" class="form-control">
+        <label class="form-label">Difficulty:</label>
+        <input type="number" name="difficulty" class="form-control" placeholder="On a scale of 1-10...">
       </fieldset>
-      <input type="submit" value="Create/Log New Workout" class="btn btn-success">
+      <br>
+      <input type="submit" value="Publish" class="btn btn-success">
     </form>
   </div>
 {% endblock %}
-
-
-{%- comment -%}
-  <label class="form-label">isVis</label>
-  <input type="checkbox" name="isVis" class="form-check-input">{%- endcomment -%}

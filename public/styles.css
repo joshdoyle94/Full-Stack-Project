@@ -1,3 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fjalla+One&family=Poiret+One&display=swap');
+
 body {
-    background-color: grey;
+    /* background-color: steelblue; */
+    background-color: rgb(167,190,215);
+}
+
+.welcomePage {
+    /* background-color: black; */
+    justify-content: center;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    color: rgb(4,4,44)
+}
+
+#homeImage {
+    width: 300px;
+    width: 300px;
+}
+
+.navbar {
+    background-color: rgb(4,4,44);
+}
+
+.navbar-brand {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+#register {
+    font-size: small;
+    position: absolute;
+    right: 100px;
+}
+
+#login {
+    font-size: small;
+    position: absolute;
+    right: 0;
+}
+
+#viewAll {
+    font-size: small;
+}
+
+#new {
+    font-size: small;
+}
+
+#myWorkouts {
+    font-size: small;
+}
+
+#logout {
+    font-size: small;
+    position: absolute;
+    right: 0;
+}
+
+#username {
+    font-size: small;
+    position: absolute;
+    right: 100px;
+}
+
+.display-7 {
+    justify-content: center;
+    text-align: center;
+    margin-top: 15px;
+    font-size: xx-large;
+    color: rgb(4,4,44);
+}
+
+.cardHeader {
+    background-color: rgb(4,4,44);
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.row {
+    justify-content: space-around
+}
+
+.card {
+    background-color: rgb(235, 230, 230);
+    margin-left: 10px;
+    margin-top: 10px;
+    border: solid rgb(4,4,44);
+    color: rgb(4,4,44);
+}
+
+.btn {
+    background-color: rgb(4,4,44);
+    color:rgb(235, 230, 230)
+}
+
+.form-control {
+    background-color: rgb(235, 230, 230);
+    /* max-width: 500px; */
+}
+
+#postNew {
+    font-family: 'Fjalla One', sans-serif;
+    color: rgb(4,4,44);
+}
+
+#registerCard {
+    justify-content: center;
+    text-align: center;
+}
+
+#loginCard {
+    justify-content: center;
+    text-align: center;
 }
